@@ -48,7 +48,7 @@ Configuration ConfigureLCMforAAPull
 
     if(!$NodeConfigurationName -or $NodeConfigurationName -eq "")
     { 
-        $ConfigurationNames = $null
+        $ConfigurationNames = "SimpleConfig.DSCVM01.webserver"
     }
     else
     {
