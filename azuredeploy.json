@@ -62,8 +62,8 @@
         }
     },
     "variables": {
-        "vmName": "DSCVM01",
-        "storageAccountName": "zdsceast2storage01",
+        "vmName": "dscvm01",
+        "storageAccountName": "dsceast2storage",
         "pricingTier": "Free",
         "configurationURI": "https://raw.githubusercontent.com/muraliti/AzureDsc/master/Configurations/SimpleConfig.ps1",
         "configurationName": "SimpleConfig",

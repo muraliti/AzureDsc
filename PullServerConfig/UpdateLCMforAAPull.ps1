@@ -6,7 +6,7 @@ Configuration ConfigureLCMforAAPull
         [Parameter(Mandatory=$True)]
         $RegistrationUrl,
 
-         Parameter(Mandatory=$True)]
+        [Parameter(Mandatory=$True)]
         [PSCredential]$RegistrationKey,
 
         [Int]$RefreshFrequencyMins = 30,
