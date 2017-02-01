@@ -62,13 +62,13 @@
         }
     },
     "variables": {
-        "vmName": "zdscvm01",
+        "vmName": "DSCVM01",
         "storageAccountName": "zdsceast2storage01",
         "pricingTier": "Free",
-        "configurationURI": "https://raw.githubusercontent.com/muraliti/Azure_Dsc/master/Configurations/SimpleConfig.ps1",
+        "configurationURI": "https://raw.githubusercontent.com/muraliti/AzureDsc/master/Configurations/SimpleConfig.ps1",
         "configurationName": "SimpleConfig",
         "configurationDescription": "A configuration for installing IIS",
-        "runbookURI": "https://raw.githubusercontent.com/muraliti/Azure_Dsc/master/Runbooks/SampleRunbook.ps1",
+        "runbookURI": "https://raw.githubusercontent.com/muraliti/AzureDsc/master/Runbooks/SampleRunbook.ps1",
         "runbookName": "dscSampleRunbook",
         "runbookDescription": "A sample runbook",
         "credentialName": "dscMyVMCredential",
@@ -78,7 +78,7 @@
         "vmUseSSL": "true",
         "scheduleName": "DailyAt6PM",
         "scheduleStartTime": "12/30/2020 18:00:00",
-        "dscExtensionModulesUrl": "https://github.com/muraliti/Azure_Dsc/raw/master/PullServerConfig/UpdateLCMforAAPull.zip",
+        "dscExtensionModulesUrl": "https://github.com/muraliti/AzureDsc/raw/master/PullServerConfig/UpdateLCMforAAPull.zip",
         "dscExtensionConfigurationFunction": "UpdateLCMforAAPull.ps1\\ConfigureLCMforAAPull",
         "nodeConfigurationName": "SimpleConfig.DSCVM01.webserver",
         "vmImagePublisher": "MicrosoftWindowsServer",
@@ -436,7 +436,7 @@
                         },
                         {
                             "Name": "AllowModuleOverwrite",
-                            "Value": false,
+                            "Value": true,
                             "TypeName": "System.Boolean"
                         },
                         {
