@@ -1,46 +1,24 @@
-# Define All Global Constants Here
-
-$test = "MyPassword"
-$ParametersJsonFile = $PSScriptRoot + '\azuredeploy-parameters.json'
-$TemplatesJsonFile = $PSScriptRoot + '\azuredeploy.json'
-
-
-cls
-
-# To make sure the Azure PowerShell module is available after you install
-# Get-Module –ListAvailable
-
-$pw = ConvertTo-SecureString $test -AsPlainText -Force
-$cred = New-Object System.Management.Automation.PSCredential ("MyEmail@Domain.com",$pw) 
-Add-AzureRmAccount -Credential $cred
-
-
-# Azure Variables and Constants
-$sub = Get-AzureRmSubscription 
-$subId = $sub.SubscriptionId
-$deploymentName = "InstallVM-ArrowAutomation-PowerShell-" +  $(get-date -f MM-dd-yyyy_HH_mm_ss)
-
-$ResourceGroup_ArrowAutomation = 'ArrowAutomation'
-$LocationWestCentralUS = "westcentralus"
-
-
+#Connect to your Azure account
+Login-AzureRmAccount
 
 #Select your subscription if you have more than one
 #Select-AzureSubscription -SubscriptionName "My Subscription Name"
 
+$ResourceGroupName = "ArrowAutomation"
 #$AutomationAccountName = [System.Guid]::NewGuid().toString()
 $AutomationAccountName = "dscAzureAutomation"
+#$Location =  "southcentralus"
+$Location = "westcentralus"
 
+New-AzureRmResourceGroup -Name $ResourceGroupName -Location $Location
+New-AzureRmAutomationAccount -ResourceGroupName $ResourceGroupName -Name $AutomationAccountName -Location $Location -Plan Free
 
-#New-AzureRmResourceGroup -Name $ResourceGroupName -Location $LocationWestCentralUS
-New-AzureRmAutomationAccount -ResourceGroupName $ResourceGroup_ArrowAutomation -Name $AutomationAccountName -Location $LocationWestCentralUS -Plan Free
-
-$RegistrationInfo = Get-AzureRmAutomationRegistrationInfo -ResourceGroupName $ResourceGroup_ArrowAutomation -AutomationAccountName $AutomationAccountName
+$RegistrationInfo = Get-AzureRmAutomationRegistrationInfo -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName
 
 #Set the parameter values for the template
 $Params = @{
     accountName = $AutomationAccountName
-    regionId = $LocationWestCentralUS
+    regionId = $Location
     registrationKey = $RegistrationInfo.PrimaryKey
     registrationUrl = $RegistrationInfo.Endpoint
     dscCompilationJobId = [System.Guid]::NewGuid().toString()
@@ -49,6 +27,10 @@ $Params = @{
     timestamp = (Get-Date).toString()
 }
 
-#$TemplateURI = 'https://raw.githubusercontent.com/azureautomation/automation-packs/master/102-sample-automation-setup/azuredeploy.json'
+$ParametersJsonFile = $PSScriptRoot + '\azuredeploy-parameters.json'
+$TemplatesJsonFile = $PSScriptRoot + '\azuredeploy.json'
 
-New-AzureRmResourceGroupDeployment -ResourceGroupName $ResourceGroup_ArrowAutomation -TemplateParameterObject $Params -TemplateFile $TemplatesJsonFile
+#$TemplateURI = 'https://raw.githubusercontent.com/azureautomation/automation-packs/master/102-sample-automation-setup/azuredeploy.json'
+#$TemplateURI = 'https://raw.githubusercontent.com/esell/AzureDsc/master/azuredeploy.json'
+
+New-AzureRmResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateParameterObject $Params -TemplateFile $TemplatesJsonFile

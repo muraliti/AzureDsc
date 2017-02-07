@@ -1,3 +1,8 @@
 {
-  
+    "accountName": {
+        "value": "MyAutomationAccount"
+    },
+    "regionId": {
+        "value": "westcentralus"
+    }
 }
