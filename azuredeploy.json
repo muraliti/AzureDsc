@@ -84,7 +84,7 @@
         "vmImagePublisher": "MicrosoftWindowsServer",
         "vmImageOffer": "WindowsServer",
         "vmOSDiskName": "osdiskforwindowssimple",
-        "vmNicName": "myVMNic",
+        "vmNicName": "dscVMNic",
         "vmAddressPrefix": "10.0.0.0/16",
         "vmSubnetName": "Subnet",
         "vmSubnetPrefix": "10.0.0.0/24",
