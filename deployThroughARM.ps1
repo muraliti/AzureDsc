@@ -33,4 +33,5 @@ $TemplatesJsonFile = $PSScriptRoot + '\azuredeploy.json'
 #$TemplateURI = 'https://raw.githubusercontent.com/azureautomation/automation-packs/master/102-sample-automation-setup/azuredeploy.json'
 #$TemplateURI = 'https://raw.githubusercontent.com/esell/AzureDsc/master/azuredeploy.json'
 
-New-AzureRmResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateParameterObject $Params -TemplateFile $TemplatesJsonFile
+New-AzureRmResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateParameterObject $Params -TemplateFile $TemplatesJsonFile 
+#Test-AzureRmResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateParameterObject $Params -TemplateFile $TemplatesJsonFile
