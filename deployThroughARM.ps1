@@ -5,9 +5,7 @@ Login-AzureRmAccount
 #Select-AzureSubscription -SubscriptionName "My Subscription Name"
 
 $ResourceGroupName = "ArrowAutomation"
-#$AutomationAccountName = [System.Guid]::NewGuid().toString()
 $AutomationAccountName = "dscAzureAutomation"
-#$Location =  "southcentralus"
 $Location = "westcentralus"
 
 New-AzureRmResourceGroup -Name $ResourceGroupName -Location $Location
@@ -30,8 +28,5 @@ $Params = @{
 $ParametersJsonFile = $PSScriptRoot + '\azuredeploy-parameters.json'
 $TemplatesJsonFile = $PSScriptRoot + '\azuredeploy.json'
 
-#$TemplateURI = 'https://raw.githubusercontent.com/azureautomation/automation-packs/master/102-sample-automation-setup/azuredeploy.json'
-#$TemplateURI = 'https://raw.githubusercontent.com/esell/AzureDsc/master/azuredeploy.json'
-
 New-AzureRmResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateParameterObject $Params -TemplateFile $TemplatesJsonFile 
-#Test-AzureRmResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateParameterObject $Params -TemplateFile $TemplatesJsonFile
+
