@@ -11,14 +11,14 @@
         },
         "regionId": {
             "type": "string",
-            "defaultValue": "eastus2",
+            "defaultValue": "South Central US",
             "allowedValues": [
-                "westcentralus",
                 "japaneast",
                 "eastus2",
                 "westeurope",
                 "southeastasia",
-                "southcentralus"
+                "southcentralus",
+                "westcentralus"
             ],
             "metadata": {
                 "description": "The region the Automation account is located in."
@@ -62,13 +62,13 @@
         }
     },
     "variables": {
-        "vmName": "dscvm01",
-        "storageAccountName": "dsceast2storage",
+        "vmName": "dscvm01es",
+        "storageAccountName": "dsceast2storagees",
         "pricingTier": "Free",
-        "configurationURI": "https://raw.githubusercontent.com/muraliti/AzureDsc/master/Configurations/SimpleConfig.ps1",
+        "configurationURI": "https://raw.githubusercontent.com/esell/AzureDsc/master/Configurations/SimpleConfig.ps1",
         "configurationName": "SimpleConfig",
         "configurationDescription": "A configuration for installing IIS",
-        "runbookURI": "https://raw.githubusercontent.com/muraliti/AzureDsc/master/Runbooks/SampleRunbook.ps1",
+         "runbookURI": "https://raw.githubusercontent.com/esell/AzureDsc/master/Runbooks/SampleRunbook.ps1",
         "runbookName": "dscSampleRunbook",
         "runbookDescription": "A sample runbook",
         "credentialName": "dscMyVMCredential",
@@ -78,9 +78,9 @@
         "vmUseSSL": "true",
         "scheduleName": "DailyAt6PM",
         "scheduleStartTime": "12/30/2020 18:00:00",
-        "dscExtensionModulesUrl": "https://github.com/muraliti/AzureDsc/raw/master/PullServerConfig/UpdateLCMforAAPull.zip",
+         "dscExtensionModulesUrl": "https://github.com/esell/AzureDsc/raw/master/PullServerConfig/UpdateLCMforAAPull.zip",
         "dscExtensionConfigurationFunction": "UpdateLCMforAAPull.ps1\\ConfigureLCMforAAPull",
-        "nodeConfigurationName": "SimpleConfig.DSCVM01.webserver",
+        "nodeConfigurationName": "[concat(variables('configurationName'), '.webserver')]",
         "vmImagePublisher": "MicrosoftWindowsServer",
         "vmImageOffer": "WindowsServer",
         "vmOSDiskName": "osdiskforwindowssimple",
@@ -89,11 +89,11 @@
         "vmSubnetName": "Subnet",
         "vmSubnetPrefix": "10.0.0.0/24",
         "vmStorageAccountType": "Standard_LRS",
-        "vmPublicIPAddressName": "dscPublicIPUsEast2",
+        "vmPublicIPAddressName": "myPublicIP",
         "vmPublicIPAddressType": "Dynamic",
         "vmStorageAccountContainerName": "vhds",
-        "vmSize": "Standard_DS13_v2",
-        "vmVirtualNetworkName": "dscMyVNET",
+        "vmSize": "Basic_A0",
+        "vmVirtualNetworkName": "MyVNET",
         "vmVnetID": "[resourceId('Microsoft.Network/virtualNetworks', variables('vmVirtualNetworkName'))]",
         "vmSubnetRef": "[concat(variables('vmVnetID'), '/subnets/', variables('vmSubnetName'))]",
         "vmOSVersion": "2012-R2-Datacenter",
@@ -436,7 +436,7 @@
                         },
                         {
                             "Name": "AllowModuleOverwrite",
-                            "Value": true,
+                            "Value": false,
                             "TypeName": "System.Boolean"
                         },
                         {
