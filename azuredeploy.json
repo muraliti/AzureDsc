@@ -74,7 +74,7 @@
         "credentialName": "dscMyVMCredential",
         "vmUsername": "testuser",
         "vmPassword": "P2ssw0rd!",
-        "vmPort": "5986",
+        "vmPort": "3389",
         "vmUseSSL": "true",
         "scheduleName": "DailyAt6PM",
         "scheduleStartTime": "12/30/2020 18:00:00",
